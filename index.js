@@ -5,10 +5,10 @@ const app = express();
 app.use(express.json());
  
 const dbConfig = {
-  host: 'auth-db1592.hstgr.io',
-  user:'u650672385_root' ,
-  password: "_MYschool_db1",
-  database: 'u650672385__myschool_db'
+ host: process.env.HOST,
+  user: process.env.USER,
+  password: process.env.PASSWORD,
+  database: process.env.DATABASE
 };
 
 const pool = mysql.createPool(dbConfig);
