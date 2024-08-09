@@ -89,7 +89,7 @@ app.post('/insertattendance', async (req, res) => {
   const { attendance } = req.body;
    const query = `INSERT INTO attendance (fk_student_id, attendance,date) VALUES ${attendance.map(() => '(?,?,?)').join(', ')}`;
   const query2=``;
-  const values = attendance.flatMap((attendance) => [attendance.student_id, attendance.attendance]);
+  const values = attendance.flatMap((attendance) => [attendance.student_id, attendance.attendance,attendance.date]);
 
   try {
     const [results] = await pool.execute(query, values);
