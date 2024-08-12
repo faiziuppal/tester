@@ -23,9 +23,9 @@ app.get('/api/studentlogin', async (req, res) => {
     res.status(500).json({ message: 'Error fetching users' });
   }
 });
-app.get('/api/studentlogin/:student_id/:password', async (req, res) => {
+app.get('/api/studentlogin/:id/:pass', async (req, res) => {
   const roll_no=req.params.student_id;
-  const password=req.params.password;
+  const password=req.params.pass;
   try {
     const [results] = await pool.execute(`SELECT student_id, password, roll_no FROM student_profile where email=${roll_no} AND password=${password}`);
     res.json(results);
