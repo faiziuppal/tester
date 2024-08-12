@@ -27,7 +27,7 @@ app.get('/api/studentlogin/:id/:pass', async (req, res) => {
   const roll_no=req.params.student_id;
   const password=req.params.pass;
   try {
-    const [results] = await pool.execute(`SELECT student_id, password, roll_no FROM student_profile where email=${roll_no} AND password=${password}`);
+    const [results] = await pool.execute(`SELECT student_id, password, roll_no FROM student_profile where email=${roll_no} AND password='${password}'`);
     res.json(results);
   } catch (error) {
     console.error(error); 
