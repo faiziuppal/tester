@@ -35,6 +35,7 @@ app.get('/api/teacherlogin', async (req, res) => {
 });
 app.get('/studentprofile/:id', async (req, res) => {
   const stdid = parseInt(req.params.id);
+ console.log(stdid)
   try {
     const [results] = await pool.execute(`SELECT * FROM all_classes INNER JOIN class_sections ON all_classes.class_id = class_sections.fk_class_id INNER JOIN student_class ON class_sections.section_id = student_class.fk_section_id INNER JOIN student_profile ON student_class.fk_student_id =student_profile.student_id WHERE student_id = ${stdid} AND status='1'`);
     res.json(results);
