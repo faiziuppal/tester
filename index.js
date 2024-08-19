@@ -1,6 +1,5 @@
 const express = require('express');
-const mysql = require('mysql2/promise');
-const jwt = require('jsonwebtoken')
+const mysql = require('mysql2/promise')
 const app = express();
 app.use(express.json());
 
@@ -12,7 +11,6 @@ const dbConfig = {
 };
 
 const pool = mysql.createPool(dbConfig);
-JWT_SECRET = " dvabjhvnksdm!!!vmdfbsdvjbnsdrfnghweng"
 app.get('/api/studentlogin', async (req, res) => {
   try {
     const [results] = await pool.execute('SELECT student_id, password, roll_no FROM student_profile');
@@ -25,8 +23,6 @@ app.get('/api/studentlogin', async (req, res) => {
 
 app.get('/authentication/:id', async (req, res) => {
   const school_id = req.params.id;
-  const token = jwt.sign({ school_id }, JWT_SECRET);
-  console.log(token)
   if (res.status(201)) {
     return res.send({ status: 'ok', data: token })
   }
